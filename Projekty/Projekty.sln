@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Książka_Tel", "Projekty\Książka_Tel.csproj", "{C9F9FC5D-81D2-4838-B433-E2C85505964C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Translatory1", "Translatory1\Translatory1.csproj", "{09A1BCF8-1CE1-44F5-9099-B6C8DC7EF962}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drzewo_Gena", "Drzewo_Gena\Drzewo_Gena.csproj", "{54E98BF5-8484-4A26-91F3-84FDFDD83E33}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C9F9FC5D-81D2-4838-B433-E2C85505964C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9F9FC5D-81D2-4838-B433-E2C85505964C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9F9FC5D-81D2-4838-B433-E2C85505964C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9F9FC5D-81D2-4838-B433-E2C85505964C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09A1BCF8-1CE1-44F5-9099-B6C8DC7EF962}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09A1BCF8-1CE1-44F5-9099-B6C8DC7EF962}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09A1BCF8-1CE1-44F5-9099-B6C8DC7EF962}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09A1BCF8-1CE1-44F5-9099-B6C8DC7EF962}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54E98BF5-8484-4A26-91F3-84FDFDD83E33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54E98BF5-8484-4A26-91F3-84FDFDD83E33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54E98BF5-8484-4A26-91F3-84FDFDD83E33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54E98BF5-8484-4A26-91F3-84FDFDD83E33}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
