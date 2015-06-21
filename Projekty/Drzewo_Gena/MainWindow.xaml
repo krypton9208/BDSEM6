@@ -1,8 +1,22 @@
 ﻿<Window x:Class="Drzewo_Gena.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Drzewo Genaologiczne" Height="720" Width="1080" WindowStartupLocation="CenterScreen">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height=" 10"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="100"/>
+        </Grid.ColumnDefinitions>
+        <TreeView x:Name="Drzewko" Grid.Row="1" Grid.Column="1" Margin="0"  VerticalContentAlignment="Top" UseLayoutRounding="True"/>
+        <Button Content="Dodaj osobe" Name="DodajOsobe" MinHeight="30" Grid.Row="1" Grid.Column="2" Width="90" Height="30" Margin="5.4,52.4,4.6,588.8" VerticalAlignment="Top" VerticalContentAlignment="Top" HorizontalAlignment="Left"/>
+        <Button Content="DodajDziecko" Name="Dodajdziecko" MinHeight="30" Grid.Row="1" Grid.Column="2" Width="90" Height="30" Margin="5.4,101.4,4.6,539.8" VerticalAlignment="Top" VerticalContentAlignment="Top" HorizontalAlignment="Left"/>
+        <Button Content="Usuń osobe" Name="UsunOsobe" MinHeight="30" Grid.Row="1" Grid.Column="2" Width="90" Height="30" Margin="5.4,147.4,4.6,493.8" VerticalAlignment="Top" VerticalContentAlignment="Top" HorizontalAlignment="Left"/>
+
     </Grid>
 </Window>

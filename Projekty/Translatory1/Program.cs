@@ -42,12 +42,20 @@ namespace Translatory1
 
             Console.WriteLine(allines);
             AnalizaLeks.Wejscie = allines;
-            while(AnalizaLeks.Wejscie.Length>0)
+            try
             {
-                var temp = AnalizaLeks.Next();
-                if (temp == null) break;
-                Console.WriteLine( temp.TypElementu.Nazwa + " " + temp.Dane + " pozycja: " + temp.Pozycja.ToString());
+                while (AnalizaLeks.Wejscie.Length > 0)
+                {
+                    var temp = AnalizaLeks.Next();
+                    if (temp == null) break;
+                    Console.WriteLine(temp.TypElementu.Nazwa + " " + temp.Dane + " pozycja: " + temp.Pozycja.ToString());
+                }
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            
         }
     }
 }

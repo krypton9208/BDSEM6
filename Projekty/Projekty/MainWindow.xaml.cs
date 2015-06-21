@@ -76,18 +76,22 @@ namespace Projekty
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
+
             if (DataOK())
             {
                 Telefon tel = new Telefon(TextNumer.Text, (Telefon.Operatorzy)TextOperator.SelectedItem, (Telefon.TypTelefonu)TextTyp.SelectedItem);
                 Adres adr = new Adres(TextMiejsc.Text, TextUlica.Text, TextKod.Text, TextWoj.Text, TextKraj.Text);
                 Osoba os = new Osoba(TextImie.Text, TextNaziwsko.Text, adr, tel);
-                os.Tel[os.Tel.Count - 1].Numer = Convert.ToInt32(TextNumer.Text);                
-                baza.AddOsoba(os);
-                _Ksiazka = baza.getListItems;
-                Tabelka.ItemsSource = null;
-                Tabelka.ItemsSource = _Ksiazka;
-                Tabelka.Items.Refresh();
+                os.Tel[os.Tel.Count - 1].Numer = Convert.ToInt32(TextNumer.Text);
+                if (baza.WyszukajDokladnie(os.Imie, os.Nazwisko).Count == 0)
+                {
+                    baza.AddOsoba(os);
+                    _Ksiazka = baza.getListItems;
+                    Tabelka.ItemsSource = null;
+                    Tabelka.ItemsSource = _Ksiazka;
+                    Tabelka.Items.Refresh();
+                }
+
             }
 
         }
@@ -96,7 +100,7 @@ namespace Projekty
         {
             DodajOsoba.Visibility = System.Windows.Visibility.Visible;
             UpdateOsoba.Visibility = System.Windows.Visibility.Hidden;
-            List_Numerow.SelectedItem= null;
+            List_Numerow.SelectedItem = null;
             List_Numerow.ItemsSource = null;
             ShowOsoba(new Osoba());
             ShowNumer(new Telefon());
@@ -105,12 +109,12 @@ namespace Projekty
         }
 
 
-        
+
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
 
-          
+
         }
 
         private void Tabelka_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
@@ -149,15 +153,17 @@ namespace Projekty
             if (!rem)
             {
                 int i = Tabelka.SelectedIndex;
-                if (_Ksiazka[i].Tel.Count > 0)
+                if (i >= 0)
                 {
-                    int t = List_Numerow.SelectedIndex;
-                    if (t >= 0) _Ksiazka[i].Atel = _Ksiazka[i].Tel[t];
-                    else if (t < 0)
-                        _Ksiazka[i].Atel = _Ksiazka[i].Tel[0];
+                    if (_Ksiazka[i].Tel.Count > 0)
+                    {
+                        int t = List_Numerow.SelectedIndex;
+                        if (t >= 0) _Ksiazka[i].Atel = _Ksiazka[i].Tel[t];
+                        else if (t < 0)
+                            _Ksiazka[i].Atel = _Ksiazka[i].Tel[0];
+                    }
+                    ShowNumer(_Ksiazka[i].Atel);
                 }
-                ShowNumer(_Ksiazka[i].Atel);
-                
 
             }
         }
@@ -170,7 +176,7 @@ namespace Projekty
             baza.Update(_Ksiazka[i]);
             List_Numerow.Items.Refresh();
 
-            
+
         }
 
         private void UpdateOsoba_Click(object sender, RoutedEventArgs e)
@@ -219,7 +225,8 @@ namespace Projekty
         private void Button_Click_6(object sender, RoutedEventArgs e)
         {
             List<Osoba> temp = baza.getListItems.Where(x => x.Imie.Contains(SImie.Text) && x.Nazwisko.Contains(SNazwisko.Text)).ToList();
-            Tabelka.ItemsSource = temp;
+            _Ksiazka = temp;
+            Tabelka.ItemsSource = _Ksiazka;
             Tabelka.Items.Refresh();
         }
     }

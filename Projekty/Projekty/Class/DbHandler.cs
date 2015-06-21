@@ -13,7 +13,7 @@ namespace Projekty.Class
     class DbHandler
     {
         private string filename = String.Empty;
-       private IEmbeddedConfiguration db_config;
+       
         IObjectContainer db;
 
 
@@ -30,15 +30,14 @@ namespace Projekty.Class
             {
                 db.Close();
             }
-                
+
             if (db == null)
             {
-                db_config = Db4oEmbedded.NewConfiguration();
+              
 
-                
-                db = Db4oEmbedded.OpenFile(db_config, filename);
+                db = Db4oEmbedded.OpenFile( filename);
             }
-            
+
         }
 
         public bool AddOsoba(Osoba person)
@@ -47,7 +46,6 @@ namespace Projekty.Class
             try
             {
                 db.Store(person);
-                db.Activate(person, 2);
             }
             finally
             {
@@ -58,10 +56,10 @@ namespace Projekty.Class
 
         public List<Osoba> getListItems
         {
-            get{
+            get
+            {
                 return db.Query<Osoba>().ToList();
             }
-            
         }
 
         public void _Close()
@@ -85,7 +83,7 @@ namespace Projekty.Class
 
         public bool Delete(Osoba data)
         {
-            foreach(var item in data.Tel)
+            foreach (var item in data.Tel)
             {
                 db.Delete(item);
             }
@@ -98,8 +96,12 @@ namespace Projekty.Class
 
         public List<Osoba> Wyszukaj(string imie, string nazwisko)
         {
-            return db.Query<Osoba>(x => x.Imie.Contains(imie) ||  x.Nazwisko.Contains(nazwisko)).ToList<Osoba>();
+            return db.Query<Osoba>(x => x.Imie.Contains(imie) || x.Nazwisko.Contains(nazwisko)).ToList<Osoba>();
         }
-        
+
+        public List<Osoba> WyszukajDokladnie(string imie, string nazwisko)
+        {
+            return db.Query<Osoba>(x => x.Imie.Equals(imie) && x.Nazwisko.Equals(nazwisko)).ToList<Osoba>();
+        }
     }
 }
