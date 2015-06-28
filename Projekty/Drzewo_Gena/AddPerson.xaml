@@ -1,0 +1,31 @@
+﻿<Window x:Class="Drzewo_Gena.AddPerson"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:src="clr-namespace:System;assembly=mscorlib"
+        xmlns:data="clr-namespace:Drzewo_Gena"
+        Title="Dodaj osobe" Height="300" Width="300" WindowStartupLocation="CenterScreen" >
+    <Window.Resources>
+        <ObjectDataProvider  MethodName="GetValues"
+                             ObjectType="{x:Type src:Enum}" 
+                             x:Key="gender">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="data:Gender"></x:Type>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
+    <Grid>
+        <Label Content="Imie" HorizontalAlignment="Left" Margin="24,10,0,0" VerticalAlignment="Top" Height="26" Width="32"/>
+        <Label Content="Data Urodzenia" HorizontalAlignment="Left" Margin="24,41,0,0" VerticalAlignment="Top" Height="26" Width="91"/>
+        <Label Content="Data śmierci" HorizontalAlignment="Left" Margin="24,72,0,0" VerticalAlignment="Top" Height="26" Width="75"/>
+        <Label Content="Płeć" HorizontalAlignment="Left" Margin="24,103,0,0" VerticalAlignment="Top" Height="26" Width="32"/>
+        <Label Content="Imie Ojca" HorizontalAlignment="Left" Margin="24,134,0,0" VerticalAlignment="Top" Height="26" Width="59"/>
+        <Label Content="Imie Matki" HorizontalAlignment="Left" Margin="24,165,0,0" VerticalAlignment="Top" Height="26" Width="66"/>
+        <TextBox Name="ImieText" HorizontalAlignment="Left" Height="23" Margin="120,14,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Grid.ColumnSpan="3"/>
+        <DatePicker Name="BirdDateText" HorizontalAlignment="Left" Height="23" Margin="120,43,0,0"   VerticalAlignment="Top" Width="120" Grid.ColumnSpan="3"/>
+        <DatePicker Name="DeathDateText" HorizontalAlignment="Left" Height="23" Margin="120,74,0,0" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="3"/>
+        <ComboBox Name="ComboGender" ItemsSource="{Binding Source={StaticResource gender}}" HorizontalAlignment="Left" Height="23" Margin="120,105,0,0" SelectedIndex="0"  VerticalAlignment="Top" Width="120" Grid.ColumnSpan="3"/>
+        <ComboBox Name="ComboOjcowie"  HorizontalAlignment="Left" Height="23" Margin="120,137,0,0"  IsEditable="True" IsTextSearchEnabled="True"  IsTextSearchCaseSensitive="False" StaysOpenOnEdit="True" ItemsSource="{Binding Ojcowie}" Text="{Binding SelectedItemText, Mode=TwoWay}" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="3"/>
+        <ComboBox Name="ComboMatki" HorizontalAlignment="Left"  Height="23" Margin="120,169,0,0" IsEditable="True" IsTextSearchEnabled="True"  IsTextSearchCaseSensitive="False" StaysOpenOnEdit="True" ItemsSource="{Binding Matki}" Text="{Binding SelectedItemText, Mode=TwoWay}"  VerticalAlignment="Top" Width="120" Grid.ColumnSpan="3"/>
+        <Button Content="Dodaj osobe" HorizontalAlignment="Left" Margin="120,214,0,0" VerticalAlignment="Top" Width="75" Height="19" Click="Button_Click"/>
+    </Grid>
+</Window>

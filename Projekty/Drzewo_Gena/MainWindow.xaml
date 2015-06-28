@@ -1,7 +1,8 @@
-﻿<Window x:Class="Drzewo_Gena.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Drzewo Genaologiczne" Height="720" Width="1080" WindowStartupLocation="CenterScreen">
+        xmlns:Data="clr-namespace:System.Data;assembly=System.Data" x:Class="Drzewo_Gena.MainWindow"
+        Title="Drzewo Genaologiczne" Height="600" Width="790" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height=" 10"/>
@@ -13,10 +14,21 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="100"/>
         </Grid.ColumnDefinitions>
-        <TreeView x:Name="Drzewko" Grid.Row="1" Grid.Column="1" Margin="0"  VerticalContentAlignment="Top" UseLayoutRounding="True"/>
-        <Button Content="Dodaj osobe" Name="DodajOsobe" MinHeight="30" Grid.Row="1" Grid.Column="2" Width="90" Height="30" Margin="5.4,52.4,4.6,588.8" VerticalAlignment="Top" VerticalContentAlignment="Top" HorizontalAlignment="Left"/>
-        <Button Content="DodajDziecko" Name="Dodajdziecko" MinHeight="30" Grid.Row="1" Grid.Column="2" Width="90" Height="30" Margin="5.4,101.4,4.6,539.8" VerticalAlignment="Top" VerticalContentAlignment="Top" HorizontalAlignment="Left"/>
-        <Button Content="Usuń osobe" Name="UsunOsobe" MinHeight="30" Grid.Row="1" Grid.Column="2" Width="90" Height="30" Margin="5.4,147.4,4.6,493.8" VerticalAlignment="Top" VerticalContentAlignment="Top" HorizontalAlignment="Left"/>
+        <DataGrid  x:Name="Drzewko" Grid.Row="1"  Grid.Column="1" Margin="0,9.4,99.6,0.4" AutoGenerateColumns="False"  VerticalContentAlignment="Top" UseLayoutRounding="True" Grid.ColumnSpan="2" Grid.RowSpan="1" IsReadOnly="True" SelectionChanged="Drzewko_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="100" Header="Imię" Binding="{Binding Path=Imie}"/>
+                <DataGridTextColumn Width="130" Header="Data urodzenia"   Binding="{Binding Path=BirthDate, StringFormat=dd-MM-yyyy}" />
+                <DataGridTextColumn Width="130" Header="Data śmierci" Binding="{Binding Path=DeathDate, StringFormat=dd-MM-yyyy}"/>
+                <DataGridTextColumn Width="100" Header="Płeć" Binding="{Binding Path=Gender}"/>
+                <DataGridTextColumn Width="100" Header="Ojciec" Binding="{Binding Path=Father.Imie}"/>
+                <DataGridTextColumn Width="80" Header="Matka" Binding="{Binding Path=Mother.Imie}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Odśwież" x:Name="Reload" MinHeight="30" Grid.Row="1" Grid.Column="2" Width="90" Height="30" Margin="5.4,17.4,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left" Click="Reload_Click"/>
+        <Button Content="Dodaj osobe" x:Name="DodajOsobe" MinHeight="30" Grid.Row="1" Grid.Column="2" Width="90" Height="30" Margin="5.4,52.4,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left" Click="DodajOsobe_Click"/>
+        <Button Content="Usuń osobe" x:Name="UsunOsobe" MinHeight="30" Grid.Row="1" Grid.Column="2" Width="90" Height="30" Margin="5.4,122.4,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left" Click="UsunOsobe_Click"/>
+        <Button Content="Edytuj osobe" x:Name="EdytujOsobe" MinHeight="30" Grid.Row="1" Grid.Column="2" Width="90" Height="30" Click="EdytujOsobe_Click" Margin="5,87.4,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left"/>
+        <Button Content="Pokaż osobe" x:Name="PokazOsobe" MinHeight="30" Grid.Row="1" Grid.Column="2" Width="90" Height="30" Click="PokazOsobe_Click" Margin="5,157.4,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left"/>
 
     </Grid>
 </Window>

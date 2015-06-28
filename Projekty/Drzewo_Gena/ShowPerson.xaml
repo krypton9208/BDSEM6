@@ -1,0 +1,37 @@
+﻿<Window x:Class="Drzewo_Gena.ShowPerson"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:src="clr-namespace:System;assembly=mscorlib"
+        xmlns:data="clr-namespace:Drzewo_Gena"
+        Title="Pokaż osobe" Height="340" Width="300" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" >
+    <Window.Resources>
+        <ObjectDataProvider  MethodName="GetValues"
+                             ObjectType="{x:Type src:Enum}" 
+                             x:Key="gender">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="data:Gender"></x:Type>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
+    <Grid>
+        <Label Content="Imie" HorizontalAlignment="Left" Margin="24,10,0,0" VerticalAlignment="Top" Height="26" Width="32"/>
+        <Label Content="Data Urodzenia" HorizontalAlignment="Left" Margin="24,41,0,0" VerticalAlignment="Top" Height="26" Width="91"/>
+        <Label Content="Data śmierci" HorizontalAlignment="Left" Margin="24,72,0,0" VerticalAlignment="Top" Height="26" Width="75"/>
+        <Label Content="Płeć" HorizontalAlignment="Left" Margin="24,103,0,0" VerticalAlignment="Top" Height="26" Width="32"/>
+        <Label Content="Imie Ojca" HorizontalAlignment="Left" Margin="24,134,0,0" VerticalAlignment="Top" Height="26" Width="59"/>
+        <Label Content="Imie Matki" HorizontalAlignment="Left" Margin="24,165,0,0" VerticalAlignment="Top" Height="26" Width="66"/>
+        <TextBox Name="ImieText" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="120,14,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
+        <DatePicker Name="BirdDateText" IsEnabled="False"  HorizontalAlignment="Left" Height="23" Margin="120,43,0,0"   VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
+        <DatePicker Name="DeathDateText" IsEnabled="False" HorizontalAlignment="Left" Height="23" Margin="120,74,0,0" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
+        <ComboBox Name="ComboGender" IsReadOnly="True" IsEnabled="False" ItemsSource="{Binding Source={StaticResource gender}}" HorizontalAlignment="Left" Height="23" Margin="120,105,0,0" SelectedIndex="0"  VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
+        <ComboBox Name="ComboOjcowie" IsReadOnly="True" IsEnabled="False"  HorizontalAlignment="Left" Height="23" Margin="120,137,0,0"  IsEditable="True" IsTextSearchEnabled="True"  IsTextSearchCaseSensitive="False" StaysOpenOnEdit="True" ItemsSource="{Binding Ojcowie}" Text="{Binding SelectedItemText, Mode=TwoWay}" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
+        <ComboBox Name="ComboMatki" IsReadOnly="True" IsEnabled="False" HorizontalAlignment="Left"  Height="23" Margin="120,169,0,0" IsEditable="True" IsTextSearchEnabled="True"  IsTextSearchCaseSensitive="False" StaysOpenOnEdit="True" ItemsSource="{Binding Matki}" Text="{Binding SelectedItemText, Mode=TwoWay}"  VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
+        <DataGrid Name="Dzieci" IsReadOnly="True" ScrollViewer.CanContentScroll="True" HorizontalAlignment="Left" Margin="10,212,0,0" VerticalAlignment="Top" Height="97" Width="274" AutoGenerateColumns="False" Grid.ColumnSpan="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Imie dziecka" Width="200" Binding="{Binding Path=Imie}"/>
+                <DataGridTextColumn Header="Płeć" Binding="{Binding Path=Gender}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</Window>
