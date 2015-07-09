@@ -70,6 +70,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="GenTree.xaml.cs">
+      <DependentUpon>GenTree.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ShowPerson.xaml.cs">
       <DependentUpon>ShowPerson.xaml</DependentUpon>
     </Compile>
@@ -77,6 +80,10 @@
       <DependentUpon>UpdatePerson.xaml</DependentUpon>
     </Compile>
     <Page Include="AddPerson.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GenTree.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

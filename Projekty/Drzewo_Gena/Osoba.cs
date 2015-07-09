@@ -99,21 +99,17 @@ namespace Drzewo_Gena
                     return DeathDate.Year - BirthDate.Year;
             }
         }
-
-
-
         public bool CanBeFather(Person child)
         {
-            if (DeathDate == DateTime.MinValue && GetAge >= 12 && GetAge <= 70) return true;
-            if (GetAge >= 12 && GetAge <= 70 && (child.BirthDate - DeathDate).TotalDays <= 270)
+            if (DeathDate == DateTime.MinValue && GetAge -child.GetAge >= 12 && GetAge - child.GetAge <= 70 ) return true;
+            if (GetAge - child.GetAge >= 12 && GetAge - child.GetAge <= 70 && DeathDate != DateTime.MinValue && (child.BirthDate - DeathDate).TotalDays <= 270)
                 return true;
             else return false;
         }
         public bool CanBeMother(Person child)
         {
-            if (DeathDate == DateTime.MinValue && GetAge >= 12 && GetAge <= 70) return true;
-            if (GetAge >= 10 && GetAge <= 60 && (child.BirthDate - DeathDate).TotalDays == 0)
-                return true;
+            if (DeathDate == DateTime.MinValue && GetAge - child.GetAge >= 10 && GetAge - child.GetAge  <= 60) return true;
+            if (GetAge - child.GetAge >= 10 && GetAge - child.GetAge <= 60 && DeathDate != DateTime.MinValue && (child.BirthDate - DeathDate).TotalDays == 0) return true;
             else return false;
         }
 
@@ -124,7 +120,6 @@ namespace Drzewo_Gena
 
         public List<Person> GetSiblings
         {
-
             get
             {
                 List<Person> temp = new List<Person>();
@@ -147,5 +142,20 @@ namespace Drzewo_Gena
             }
 
         }
+
+
+        public List<Person> Heirs(Person data)
+        {
+            var heirsList = new List<Person>();
+
+            foreach (var child in data.Children)
+            {
+                if (child.DeathDate == DateTime.MinValue) heirsList.Add(child);
+                else heirsList.AddRange(Heirs(child));
+            }
+
+            return heirsList;
+        }
+
     }
-}
+} 

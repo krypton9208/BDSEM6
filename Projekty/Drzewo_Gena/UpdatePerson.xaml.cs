@@ -51,8 +51,8 @@ namespace Drzewo_Gena
             DbHandler = Db;
             foreach (var item in DbHandler.GetPersonList)
             {
-                if (item.Gender == Gender.male && item.CanBeFather(person)) ComboOjcowie.Items.Add(item.Imie);
-                if (item.Gender == Gender.female && item.CanBeMother(person)) ComboMatki.Items.Add(item.Imie);
+                if (item.Gender == Gender.male && item.CanBeFather(person) && item.Imie != person.Imie) ComboOjcowie.Items.Add(item.Imie);
+                if (item.Gender == Gender.female && item.CanBeMother(person) && item.Imie != person.Imie) ComboMatki.Items.Add(item.Imie);
             }
             LoadPerson(ActualPerson);
 
@@ -60,6 +60,11 @@ namespace Drzewo_Gena
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateAction();
+        }
+
+        private bool UpdateAction()
         {
             Person person = DbHandler.GetPersonFromName(ImieText.Text);
             person.BirthDate = BirdDateText.SelectedDate.GetValueOrDefault();
@@ -70,9 +75,13 @@ namespace Drzewo_Gena
                 Person tata = DbHandler.GetPersonFromName(ComboOjcowie.SelectedItem.ToString());
                 if (tata.CanBeFather(person))
                 {
-
                     person.AddFather(tata);
                     DbHandler.UpdatePerson(tata);
+                }
+                else
+                {
+                    MessageBox.Show(tata.Imie + " nie możby być ojcem.");
+                    return false;
                 }
             }
             else
@@ -93,6 +102,12 @@ namespace Drzewo_Gena
                     person.AddMother(mama);
                     DbHandler.UpdatePerson(mama);
                 }
+                else
+                {
+                    MessageBox.Show(mama.Imie + " nie może być matką.");
+                    return false;
+                }
+
 
             }
             else
@@ -104,9 +119,11 @@ namespace Drzewo_Gena
                     DbHandler.UpdatePerson(person.Mother);
                     person.AddMother(null);
                 }
-                
+
             }
             DbHandler.UpdatePerson(person);
+            MessageBox.Show("Osoba zaktualizowana");
+            return true;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -114,6 +131,8 @@ namespace Drzewo_Gena
             LoadPerson(ActualPerson);
 
         }
+
+     
 
 
     }

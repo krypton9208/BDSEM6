@@ -22,6 +22,7 @@ namespace Drzewo_Gena
         private readonly DbHandler DbHandler;
         public List<Person> Ojcowie { get; set; }
         public List<Person> Matki { get; set; }
+        public bool datachanged { get; set; }
         public AddPerson(DbHandler db, List<Person> a)
         {
             InitializeComponent();
@@ -39,18 +40,25 @@ namespace Drzewo_Gena
             }
 
             Matki = Ojcowie;
+            datachanged = false;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (!DbHandler.IsExist(ImieText.Text))
+            if (!DbHandler.IsExist(ImieText.Text) && datachanged)
             {
                 Person nowy = new Person() { Imie = ImieText.Text, BirthDate = BirdDateText.SelectedDate.GetValueOrDefault(), DeathDate = DeathDateText.SelectedDate.GetValueOrDefault(), Gender = (Gender)ComboGender.SelectedItem };
                 if (ComboOjcowie.SelectedIndex >= 0)
                 {
+
                     Person tata = DbHandler.GetPersonFromName(ComboOjcowie.SelectedItem.ToString());
-                    nowy.AddFather(tata);
-                    DbHandler.UpdatePerson(tata);
+                    if (tata.CanBeFather(nowy))
+                    {
+                        nowy.AddFather(tata);
+                        DbHandler.UpdatePerson(tata);
+                    }
+                    else MessageBox.Show(tata.Imie + " nie możby być ojcem.");
+
                 }
                 else
                 {
@@ -59,8 +67,13 @@ namespace Drzewo_Gena
                 if (ComboMatki.SelectedIndex >= 0)
                 {
                     Person mama = DbHandler.GetPersonFromName(ComboMatki.SelectedItem.ToString());
-                    nowy.AddMother(mama);
-                    DbHandler.UpdatePerson(mama);
+                    if (mama.CanBeMother(nowy))
+                    {
+                        nowy.AddMother(mama);
+                        DbHandler.UpdatePerson(mama);
+                    }
+                    else MessageBox.Show(mama.Imie + " nie może być matką.");
+
                 }
                 else
                 {
@@ -69,9 +82,15 @@ namespace Drzewo_Gena
                 DbHandler.AddOsoba(nowy);
                 MessageBox.Show("Osoba została dodana");
             }
+            else if (!datachanged) MessageBox.Show("Wybierz date urodzenia");
             else MessageBox.Show("Osoba o takim imieniu już istnieje");
-            
-           
+
+
+        }
+
+        private void BirdDateText_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            datachanged = true;
         }
     }
 

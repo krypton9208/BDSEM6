@@ -21,6 +21,29 @@ namespace Drzewo_Gena
             _Konekt();
         }
 
+        public List<Person> GetAncestors(Person person, List<Person> list)
+        {
+            if (person.Father != null)
+            {
+                list.Add(person.Father);
+                if (person.Father.Father != null || person.Father.Mother != null) GetAncestors(person.Father, list);
+            }
+            if (person.Mother != null)
+            {
+                list.Add(person.Mother);
+                if (person.Mother.Father != null || person.Mother.Mother != null) GetAncestors(person.Mother, list);
+            }
+            return list;
+        }
+
+        public List<Person> CommonAncestors(Person person1, Person person2)
+        {
+            var commonP1 = GetAncestors(person1, new List<Person>());
+            var commonP2 = GetAncestors(person2, new List<Person>());
+
+            return commonP1.Where(person => commonP2.Any(x => x == person)).ToList();
+        }
+
         private void _Konekt()
         {
             if (baza != null)

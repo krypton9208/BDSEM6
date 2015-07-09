@@ -21,7 +21,7 @@
         <Label Content="Imie Ojca" HorizontalAlignment="Left" Margin="24,134,0,0" VerticalAlignment="Top" Height="26" Width="59"/>
         <Label Content="Imie Matki" HorizontalAlignment="Left" Margin="24,165,0,0" VerticalAlignment="Top" Height="26" Width="66"/>
         <TextBox Name="ImieText" HorizontalAlignment="Left" Height="23" Margin="120,14,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Grid.ColumnSpan="3"/>
-        <DatePicker Name="BirdDateText" HorizontalAlignment="Left" Height="23" Margin="120,43,0,0"   VerticalAlignment="Top" Width="120" Grid.ColumnSpan="3"/>
+        <DatePicker Name="BirdDateText" HorizontalAlignment="Left" Height="23" Margin="120,43,0,0"   VerticalAlignment="Top" Width="120" Grid.ColumnSpan="3" SelectedDateChanged="BirdDateText_SelectedDateChanged"/>
         <DatePicker Name="DeathDateText" HorizontalAlignment="Left" Height="23" Margin="120,74,0,0" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="3"/>
         <ComboBox Name="ComboGender" ItemsSource="{Binding Source={StaticResource gender}}" HorizontalAlignment="Left" Height="23" Margin="120,105,0,0" SelectedIndex="0"  VerticalAlignment="Top" Width="120" Grid.ColumnSpan="3"/>
         <ComboBox Name="ComboOjcowie"  HorizontalAlignment="Left" Height="23" Margin="120,137,0,0"  IsEditable="True" IsTextSearchEnabled="True"  IsTextSearchCaseSensitive="False" StaysOpenOnEdit="True" ItemsSource="{Binding Ojcowie}" Text="{Binding SelectedItemText, Mode=TwoWay}" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="3"/>

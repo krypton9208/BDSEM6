@@ -26,9 +26,12 @@
         </DataGrid>
         <Button Content="Odśwież" x:Name="Reload" MinHeight="30" Grid.Row="1" Grid.Column="2" Width="90" Height="30" Margin="5.4,17.4,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left" Click="Reload_Click"/>
         <Button Content="Dodaj osobe" x:Name="DodajOsobe" MinHeight="30" Grid.Row="1" Grid.Column="2" Width="90" Height="30" Margin="5.4,52.4,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left" Click="DodajOsobe_Click"/>
-        <Button Content="Usuń osobe" x:Name="UsunOsobe" MinHeight="30" Grid.Row="1" Grid.Column="2" Width="90" Height="30" Margin="5.4,122.4,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left" Click="UsunOsobe_Click"/>
-        <Button Content="Edytuj osobe" x:Name="EdytujOsobe" MinHeight="30" Grid.Row="1" Grid.Column="2" Width="90" Height="30" Click="EdytujOsobe_Click" Margin="5,87.4,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left"/>
-        <Button Content="Pokaż osobe" x:Name="PokazOsobe" MinHeight="30" Grid.Row="1" Grid.Column="2" Width="90" Height="30" Click="PokazOsobe_Click" Margin="5,157.4,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left"/>
+        <Button Content="Usuń osobe" x:Name="UsunOsobe" Visibility="Hidden" MinHeight="30" Grid.Row="1" Grid.Column="2" Width="90" Height="30" Margin="5.4,122.4,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left" Click="UsunOsobe_Click"/>
+        <Button Content="Edytuj osobe" x:Name="EdytujOsobe" Visibility="Hidden" MinHeight="30" Grid.Row="1" Grid.Column="2" Width="90" Height="30" Click="EdytujOsobe_Click" Margin="5,87.4,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left"/>
+        <Button Content="Pokaż osobe" x:Name="PokazOsobe" Visibility="Hidden" MinHeight="30" Grid.Row="1" Grid.Column="2" Width="90" Height="30" Click="PokazOsobe_Click" Margin="5,157.4,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left"/>
+        <Button Content="Pokaż spadkobierców" Visibility="Hidden" x:Name="HeirsPerson" MinHeight="30" Grid.Row="1" Grid.Column="2" Width="90" Height="30" Click="HeirsPerson_Click" Margin="5,192.4,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left"/>
+        <Button Content="Pokaż przodków" Visibility="Hidden" x:Name="AncestryPerson" MinHeight="30" Grid.Row="1" Grid.Column="2" Width="90" Height="30" Click="AncestryPerson_Click" Margin="5,227.4,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left"/>
+        <Button Content="Pokaż GenTree" Visibility="Hidden" x:Name="GenTree" MinHeight="30" Grid.Row="1" Grid.Column="2" Width="90" Height="30" Click="GenTree_Click" Margin="5,262.4,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left"/>
 
     </Grid>
 </Window>
