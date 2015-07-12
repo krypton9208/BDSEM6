@@ -21,14 +21,14 @@ namespace Translatory1.Class
     public class Analizator
     {
         private readonly List<Element> _ListaElementow;
-        private readonly List<Wynik> _ListaWynikow;
+        private readonly List<Element> _ListaWynikow;
         public string Wejscie { get; set; }
         public int AktualnaPozycja { get; set; }
 
         public Analizator()
         {
             _ListaElementow  = new List<Element>();
-            _ListaWynikow = new List<Wynik>();
+            _ListaWynikow = new List<Element>();
             AktualnaPozycja = 0;
         }
 
@@ -37,12 +37,11 @@ namespace Translatory1.Class
             _ListaElementow.Add(el);
         }
 
-        public List<Wynik> Wyniki
+        public List<Element> Wyniki
         {
-            get
-            {
-                return _ListaWynikow;
-            }
+
+            get { return _ListaWynikow; }
+           
         }
 
         public Wynik Next()

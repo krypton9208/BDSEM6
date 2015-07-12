@@ -70,6 +70,7 @@ namespace Drzewo_Gena
             person.BirthDate = BirdDateText.SelectedDate.GetValueOrDefault();
             person.DeathDate = DeathDateText.SelectedDate.GetValueOrDefault();
             person.Gender = (Gender)ComboGender.SelectedItem;
+
             if (ComboOjcowie.SelectedItem != null)
             {
                 Person tata = DbHandler.GetPersonFromName(ComboOjcowie.SelectedItem.ToString());
@@ -119,11 +120,36 @@ namespace Drzewo_Gena
                     DbHandler.UpdatePerson(person.Mother);
                     person.AddMother(null);
                 }
-
             }
-            DbHandler.UpdatePerson(person);
-            MessageBox.Show("Osoba zaktualizowana");
-            return true;
+            bool temp = false;
+            foreach (var item in person.Children)
+            {
+                if (item.Gender == Gender.male)
+                {
+                    if (!person.CanBeFather(item))
+                    {
+                        MessageBox.Show("Osoba nie może być rodzicem...");
+                        temp = true;
+                        break;
+                    }
+                }
+                else if (!person.CanBeMother(item))
+                {
+                    {
+                        temp = true;
+                        MessageBox.Show("Osoba nie może być rodzicem...");
+                        break;
+                    }
+                }
+            }
+            if (!temp)
+            {
+                DbHandler.UpdatePerson(person);
+                MessageBox.Show("Osoba zaktualizowana");
+                return true;
+            }
+            return false;
+
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -132,7 +158,7 @@ namespace Drzewo_Gena
 
         }
 
-     
+
 
 
     }
